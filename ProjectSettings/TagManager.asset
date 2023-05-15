@@ -8,6 +8,7 @@ TagManager:
   - bonfireLit
   - GodStatue
   - touchDemon
+  - touchHunter
   layers:
   - Default
   - TransparentFX

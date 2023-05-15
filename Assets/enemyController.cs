@@ -2,6 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+//------------------------------TODO: make energyDemom and HK invisible to player when not in their dimentions!
+
 public class enemyController : MonoBehaviour
 {
     //variables
@@ -9,9 +11,10 @@ public class enemyController : MonoBehaviour
     private Rigidbody2D demonRb;
     [SerializeField]
 
+
     //movement
     //movement speed
-    private float enemySpeed = 0.5f;
+    private float enemySpeed = 3.8f;
 
     //referece gameObjects from PlayerController
     public playerController playerController;
@@ -21,7 +24,7 @@ public class enemyController : MonoBehaviour
     public bool shifted;
 
     //enemy (able to interact with player/objects) if player is shifted
-    public bool enemyTangeble;
+    public bool enemyVisible;
 
     // Start is called before the first frame update
     void Start()
@@ -37,19 +40,25 @@ public class enemyController : MonoBehaviour
 
         //get player position
         GameObject.Find("player");
+
     }
 
     // Update is called once per frame
     void Update()
     {
-        //move enemy towards player location
-        demonRb.AddForce((player.transform.position - transform.position).normalized * enemySpeed);
-
-        //see if player is greyshifted (AKA 'visable' to energyDemon)
+            //make enemy invisible, and turn of hitboxes, when player shifts out of that enemies dimention
+            enemyVisible = true;    
+    }
+    //------------------------------TODO: make energyDemom and HK invisible to player when not in their dimentions!
+    private void FixedUpdate()
+    {
+        //get shifted variable from playercontroller
+        shifted = playerController.shifted;
         if (shifted == true)
         {
-            //make enemy invisible, and turn of hitboxes, when player shifts out of that enemies dimention
-            enemyTangeble = false;
+            //move enemy towards player location if player is shifted
+            demonRb.AddForce((player.transform.position - transform.position).normalized * enemySpeed);
+            Debug.Log("Energy Demon is tracking player!");
         }
     }
 }

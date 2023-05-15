@@ -23,7 +23,7 @@ public class playerAnimator : MonoBehaviour
     //players present position
     Vector2 presentPos() { return transform.position; }
 
-    //player health
+    //player remainingSuperJump
     public int health = 3;
 
     //animation refrence
@@ -63,9 +63,9 @@ public class playerAnimator : MonoBehaviour
         if (Input.GetKey(KeyCode.W))
         {
             Debug.ClearDeveloperConsole();
-            Debug.Log("Player is in a jumping animation!");
-            anim.Play("player_jump");
-            playerJumping = true;
+            //Debug.Log("Player is in a jumping animation!");
+            //anim.Play("player_jump");
+            //playerJumping = true;
         }
 
         //if player is moving use player_move animation
